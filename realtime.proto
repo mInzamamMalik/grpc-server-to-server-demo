@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+service RealtimeService {
+  rpc Subscribe (Empty) returns (stream DataResponse);
+}
+
+message Empty {}
+
+message DataResponse {
+  string message = 1;
+  int32 timestamp = 2;
+}
