@@ -24,23 +24,24 @@ function sayHello(call, callback) {
     const name = call.request.name;
     callback(null, { message: `Hello, ${name}!` });
 }
-
-// Define the SayHello RPC method
-function sayHello1(call, callback) {
-    callback(null, { message: `Hello, ${call.request.name}!` });
+// Define the SayHi RPC method
+function sayHi(call, callback) {
+    const name = call.request.name;
+    callback(null, { message: `Hi, ${name}!` });
 }
 
-// Start the gRPC server
-function main() {
-    const server = new grpc.Server();
-    reflection.addToServer(server); // for server reflection
+const server = new grpc.Server();
+reflection.addToServer(server); // for server reflection
 
-    server.addService(helloProto.Greeter.service, { SayHello: sayHello });
-    server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), () => {
-        console.log('gRPC server running at http://127.0.0.1:50051');
-        // server.start(); // No need to call server.start() anymore
+server.addService(helloProto.Greeter.service, {
+    SayHello: sayHello,
+    SayHi: sayHi
+    // more methods goes here
+});
 
-    });
-}
+server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), () => {
+    console.log('gRPC server running at http://127.0.0.1:50051');
+    // server.start(); // No need to call server.start() anymore
 
-main();
+});
+
