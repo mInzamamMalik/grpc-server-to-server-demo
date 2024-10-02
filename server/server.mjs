@@ -21,11 +21,13 @@ const reflection = new ReflectionService(packageDefinition); // for server refle
 
 // Define the SayHello RPC method
 function sayHello(call, callback) {
+    console.log('Hello API is called');
     const name = call.request.name;
     callback(null, { message: `Hello, ${name}!` });
 }
 // Define the SayHi RPC method
 function sayHi(call, callback) {
+    console.log('Hi API is called');
     const name = call.request.name;
     callback(null, { message: `Hi, ${name}!` });
 }

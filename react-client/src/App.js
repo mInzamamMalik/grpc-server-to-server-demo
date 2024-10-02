@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { GreeterClient } from './proto/helloworld_grpc_web_pb';  // Update to match your generated files
-import { HelloRequest } from './proto/helloworld_pb';  // Update to match your generated files
+import { GreeterClient } from './proto/helloworld_grpc_web_pb';
+import { HelloRequest } from './proto/helloworld_pb';
 
-const client = new GreeterClient('http://localhost:8080', null, null);
+
+const client = new GreeterClient('http://localhost:50051'); // Replace with your gRPC web server address
 
 function App() {
   const [name, setName] = useState('World');
